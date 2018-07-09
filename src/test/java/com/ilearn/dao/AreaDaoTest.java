@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -29,21 +30,37 @@ public class AreaDaoTest
     @Test
     public void queryAreaById()
     {
+        System.out.println(areaDao.queryAreaById(1));
     }
 
     @Test
-    @Ignore
     public void insertArea()
     {
+        Area area = new Area();
+        area.setAreaName("韩府山庄");
+        area.setCreateTime(new Date());
+        area.setLastEditTime(new Date());
+        area.setPriority(8);
+
+        int result = areaDao.insertArea(area);
+        System.out.println(result);
     }
 
     @Test
     public void updateArea()
     {
+        Area area = new Area();
+        area.setAreaId(3);
+        area.setLastEditTime(new Date());
+        area.setPriority(3);
+
+        int result = areaDao.updateArea(area);
+        System.out.println(result);
     }
 
     @Test
     public void deleteArea()
     {
+        System.out.println(areaDao.deleteArea(3));
     }
 }
