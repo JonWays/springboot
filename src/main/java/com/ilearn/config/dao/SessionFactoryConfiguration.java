@@ -3,7 +3,7 @@
  * Date:     2018-07-08 下午 6:58
  * Description:
  */
-package com.ilearn.config;
+package com.ilearn.config.dao;
 
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;

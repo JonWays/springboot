@@ -1,6 +1,6 @@
 package com.ilearn.dao;
 
-import com.ilearn.entitys.Area;
+import com.ilearn.service.area.entitys.Area;
 
 import java.util.List;
 

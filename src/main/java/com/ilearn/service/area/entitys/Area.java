@@ -3,7 +3,7 @@
  * Date:     2018-07-08 下午 2:35
  * Description:
  */
-package com.ilearn.entitys;
+package com.ilearn.service.area.entitys;
 
 import lombok.Data;
 

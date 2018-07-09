@@ -3,7 +3,7 @@
  * Date:     2018-07-08 下午 3:33
  * Description:
  */
-package com.ilearn.config;
+package com.ilearn.config.dao;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.mybatis.spring.annotation.MapperScan;

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ilearn.dao.AreaDao">
-    <select id="queryAreaList" resultType="com.ilearn.entitys.Area">
+    <select id="queryAreaList" resultType="com.ilearn.service.area.entitys.Area">
         select
           area_id, area_name, priority, create_time, last_edit_time
         from
@@ -10,7 +10,7 @@
         order by priority desc
     </select>
 
-    <select id="queryAreaById" resultType="com.ilearn.entitys.Area">
+    <select id="queryAreaById" resultType="com.ilearn.service.area.entitys.Area">
         select
           area_id, area_name, priority, create_time, last_edit_time
         from
@@ -19,14 +19,14 @@
           area_id = #{areaId}
     </select>
 
-    <insert id="insertArea" useGeneratedKeys="true" keyProperty="areaId" keyColumn="area_id" parameterType="com.ilearn.entitys.Area">
+    <insert id="insertArea" useGeneratedKeys="true" keyProperty="areaId" keyColumn="area_id" parameterType="com.ilearn.service.area.entitys.Area">
         insert into t_area
           (area_name, priority, create_time, last_edit_time)
         values
           (#{areaName}, #{priority}, #{createTime}, #{lastEditTime})
     </insert>
 
-    <update id="updateArea" parameterType="com.ilearn.entitys.Area">
+    <update id="updateArea" parameterType="com.ilearn.service.area.entitys.Area">
         update t_area
             <set>
                 <if test="areaName != null">
