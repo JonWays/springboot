@@ -15,6 +15,9 @@ import com.ilearn.service.area.entitys.BatchQueryAreaRsp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
+
+import java.util.Date;
 
 @Service
 public class AreaServiceImpl implements AreaService
@@ -48,28 +51,93 @@ public class AreaServiceImpl implements AreaService
     @Override
     public CommonRsp insertArea(Area area)
     {
+        CommonRsp rsp = new CommonRsp();
+
+        if(StringUtils.isEmpty(area.getAreaName()))
+        {
+            rsp.setErrorCode(ConstantReturnCode.PARAMS_ERROR);
+            rsp.setErrorMsg("Param invalid!");
+            return rsp;
+        }
+
         try
         {
+            area.setCreateTime(new Date());
+            area.setLastEditTime(new Date());
             int effectedNum = areaDao.insertArea(area);
-            if(effectedNum > 0)
-            {}
+            if(effectedNum <= 0)
+            {
+                throw new RuntimeException("insert failed!");
+            }
         }
         catch(Exception e)
         {
-            throw new RuntimeException();
+            throw new RuntimeException(ConstantReturnCode.SYSTEM_ERROR + " + " + e.getMessage());
         }
-        return null;
+
+        rsp.setErrorMsg(ConstantReturnCode.SYSTEM_ERROR);
+        rsp.setErrorMsg("Insert Area Successful!");
+        return rsp;
     }
 
     @Override
     public CommonRsp updateArea(Area area)
     {
-        return null;
+        CommonRsp rsp = new CommonRsp();
+
+        if(StringUtils.isEmpty(area.getAreaId()))
+        {
+            rsp.setErrorCode(ConstantReturnCode.PARAMS_ERROR);
+            rsp.setErrorMsg("Param invalid!");
+            return rsp;
+        }
+
+        try
+        {
+            area.setLastEditTime(new Date());
+            int effectedNum = areaDao.updateArea(area);
+            if(effectedNum <= 0)
+            {
+                throw new RuntimeException("update failed!");
+            }
+        }
+        catch(Exception e)
+        {
+            throw new RuntimeException(ConstantReturnCode.SYSTEM_ERROR + " + " + e.getMessage());
+        }
+
+        rsp.setErrorMsg(ConstantReturnCode.SYSTEM_ERROR);
+        rsp.setErrorMsg("Update Area Successful!");
+        return rsp;
     }
 
     @Override
     public CommonRsp deleteArea(int areaId)
     {
-        return null;
+        CommonRsp rsp = new CommonRsp();
+
+        if(areaId <= 0)
+        {
+            rsp.setErrorCode(ConstantReturnCode.PARAMS_ERROR);
+            rsp.setErrorMsg("Param invalid!");
+            return rsp;
+        }
+
+        try
+        {
+            int effectedNum = areaDao.deleteArea(areaId);
+            if(effectedNum <= 0)
+            {
+                throw new RuntimeException("delete failed!");
+            }
+        }
+        catch(Exception e)
+        {
+            throw new RuntimeException(ConstantReturnCode.SYSTEM_ERROR + " + " + e.getMessage());
+        }
+
+        rsp.setErrorMsg(ConstantReturnCode.SYSTEM_ERROR);
+        rsp.setErrorMsg("Delete Area Successful!");
+        return rsp;
     }
 }

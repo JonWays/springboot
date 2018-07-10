@@ -7,4 +7,7 @@ public interface ConstantReturnCode
 
     //参数错误
     String PARAMS_ERROR = "IL.0100";
+
+    //系统异常
+    String SYSTEM_ERROR = "IL.9999";
 }
