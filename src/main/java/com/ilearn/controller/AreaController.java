@@ -23,7 +23,7 @@ public class AreaController
     @Autowired
     private AreaService areaService;
 
-    @RequestMapping(value = "/listArea", method = RequestMethod.GET)
+    @RequestMapping(value = "/listarea", method = RequestMethod.GET)
     private BatchQueryAreaRsp listArea()
     {
         BatchQueryAreaRsp rsp = areaService.queryAreaList();
@@ -31,7 +31,7 @@ public class AreaController
         return rsp;
     }
 
-    @RequestMapping(value = "/getAreaById", method = RequestMethod.GET)
+    @RequestMapping(value = "/getareabyid", method = RequestMethod.GET)
     private AreaRsp getAreaById(Integer areaId)
     {
         AreaRsp rsp = areaService.queryAreaById(areaId);
